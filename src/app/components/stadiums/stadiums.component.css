@@ -1,0 +1,24 @@
+/** 
+* Stadium Module
+*/
+.bgm-red{
+    background-color:#ad1115!important
+  }
+  .c-red{
+    color:#ad1115!important
+  }
+  .card-stadium-body img {
+    max-width: 100%;
+  }
+  .stadium-city{
+    color:rgba(255,255,255,.6);
+    font-size:15px
+  }
+  .stadium-title{
+    font-size:25px;
+    line-height:100%;
+    color:#fff
+  }
+  .card-stadium{
+      padding: 10px 30px;
+  }

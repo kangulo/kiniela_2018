@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <header>
+    <h1 class="text-center">Rusia 2018 Groups</h1>
+  </header>
+  <section class="groups">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let group of groups">
+          <div class="card">
+              <div class="card-header">
+                  <h2 class="text-center">{{group.name}}</h2>
+              </div>
+              <div class="list-group">
+                  <div class="list-group-item" *ngFor="let team of teams | filter:group.name">
+                      <div class="flag">
+                          <img src="../assets/img/flags-news/{{team.abbr}}.png" alt="">
+                      </div>
+                      <div class="lgi-text">{{team.name}}</div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>

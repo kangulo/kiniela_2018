@@ -1,0 +1,76 @@
+.tab-nav {
+    overflow: visible;
+}
+.nav-tabs>li>a:hover {
+    border-color:transparent;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.nav-tabs>li>a.active:after {
+    background:#2196F3;
+    transform: scale(1);
+}
+.nav-tabs>li>a:after {
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    -webkit-transition: all;
+    transition: all;
+    -webkit-transition-duration: 250ms;
+    transition-duration: 250ms;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.nav.tn-justified>li {
+    flex: 1;
+    text-align: center;
+}
+
+div {
+    /* border: 1px solid red; */
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+.matches-title{ 
+    font-size:25px;
+    line-height:100%;
+    color:#fff
+  }
+.matches-record img{
+    width: 100px;
+}
+.score-wrapper{
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #DEDEDE;
+    min-width: 150px;
+}
+
+.score-wrapper input{
+    width: 60px;
+    font-size: 40px;
+    text-align: center;
+    border: 0px;
+    background-color: #DEDEDE;
+    color: #5f5f5f;
+}
+.score-wrapper span{
+    font-size: 40px;
+    text-align: center;
+    color: #5f5f5f;
+}
+.score-wrapper.finished span{
+    font-size: 40px;
+    text-align: center;
+    color: #173f77;
+}

@@ -1,0 +1,164 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        
+        <div class="card-body">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs tab-nav tn-justified tn-icon" role="tablist">
+              <li role="presentation">
+                  <a class="col-sx-4 active" href="#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab" aria-expanded="true">
+                      <i class="zmdi zmdi-home icon-tab"></i> Mis Predicciones
+                  </a>
+              </li>
+              <li role="presentation">
+                  <a class="col-xs-4" href="#tab-2" aria-controls="tab-2" role="tab" data-toggle="tab" aria-expanded="false">
+                      <i class="zmdi zmdi-pin icon-tab"></i>  Detalle Predicciones
+                  </a>
+              </li>
+              <li role="presentation">
+                  <a class="col-xs-4" href="#tab-3" aria-controls="tab-3" role="tab" data-toggle="tab" aria-expanded="false">
+                      <i class="zmdi zmdi-star icon-tab"></i> Lideres de Grupo
+                  </a>
+              </li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content p-20" id="predictions-tabs">
+              <div role="tabpanel" class="tab-pane animated fadeIn active" id="tab-1">
+
+                  <div class="table-responsive">
+                      <table class="table table-striped">
+                          <thead>
+                          <tr>
+                              <th>#</th>
+                              <th>Serial</th>
+                              <th>Email</th>
+                              <th>Phone</th>
+                              <th>Verified</th>
+                              <th>Verified Date</th>
+                              <th>Pago</th>
+                              <th></th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let prediction of predictions; let i = index" (click)="getPredictionDetails(prediction.id)">
+                              <td>{{i+1}}</td>
+                              <td>{{prediction.id}}</td>
+                              <td>{{prediction.email}}</td>
+                              <td>{{prediction.phone}}</td>
+                              <td>{{prediction.verified}}</td>
+                              <td>{{prediction.verified_date}}</td>
+                              <td>{{prediction.pago}}</td>
+                              <td>
+                                <button class="btn btn-info waves-effect" (click)="getPredictionDetails(prediction.id)">Llenar</button>
+                                <!-- <ul class="actions">
+                                    <li>
+                                        <a href="">
+                                            <i class="zmdi zmdi-print"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <i class="zmdi zmdi-download"></i>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="" data-toggle="dropdown">
+                                            <i class="zmdi zmdi-more-vert"></i>
+                                        </a>
+                    
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li>
+                                                <a href="">Change Date Range</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Change Graph Type</a>
+                                            </li>
+                                            <li>
+                                                <a href="">Other Settings</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul> -->
+                              </td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+
+              <div role="tabpanel" class="tab-pane animated fadeIn" id="tab-2">
+                  <div *ngIf="predictions" class="card-body  card-padding-sm">
+                      <h3>Serial: {{serial}}</h3>
+                      <div class="list-group lg-odd-black">
+                            <p *ngIf="!predictionDetails && serial==''">You have to select at least one prediction.
+                            </p>
+                            <p *ngIf="!predictionDetails && serial!=''">This serial is not activated yet. Do you want activate this?
+                                <button class="btn btn-info waves-effect" (click)="ActivatePredictionByUser(serial);">Activate!</button>
+                            </p>
+                            <!-- <button (click)="download()">download </button> -->
+                            <!-- <div id="print-section"> -->
+                                <!-- <button class="btn btn-info waves-effect" (click)="print()">print</button> -->
+                                <div id="print-section" class="list-group-item" href="" *ngFor="let match of predictionDetails">
+                                    <div class="matches-record">
+                                        <div class="col-sm-3">
+                                            <div>{{match.date | date:'dd MMM yyyy - H:mm' | uppercase}} Local time</div>
+                                            <div>{{match.id_group}}</div>  
+                                            <div>{{match.stadium_name}}, {{match.stadium_city}}</div>
+                                        </div>
+                                        <div class="col-sm-3 text-center">
+                                            <div class="flag">
+                                                <img src="../assets/img/flags-news/{{match.flag_local_team}}.png" alt="">
+                                            </div>
+                                            <div class="name">{{match.name_local_team}}</div>
+                                        </div>
+                                        <div class="col-sm-3 text-center">
+                                                <div *ngIf="(closeDate | date:'yyyy-MM-dd HH:mm:ss') > (today | date:'yyyy-MM-dd HH:mm:ss') ; else expired">
+                                                    <div class="score-wrapper">
+                                                            <input type="number" [value]="match.gols_local_team"  OnlyNumber="true"  (change)="SavePredictionsGolLocalTeam(match.serial_id, match.match_id, $event.target.value)" min="0">
+                                                            <span> - </span>
+                                                            <input type="number" [value]="match.gols_visitor_team"  OnlyNumber="true" (change)="SavePredictionsGolVisitorTeam(match.serial_id, match.match_id, $event.target.value)" min="0">
+                                                    </div>
+                                                </div>
+                                                <ng-template #expired>
+                                                    <div class="score-wrapper finished">
+                                                        <span class="gols_local_team">{{match.gols_local_team}} </span>
+                                                        <span> - </span>
+                                                        <span class="gols_visitor_team">{{match.gols_visitor_team}}</span>
+                                                    </div>                                                
+                                                </ng-template>                                        
+                                        </div>
+                                        <div class="col-sm-3 text-center">
+                                            <div class="flag">
+                                                <img src="../assets/img/flags-news/{{match.flag_visitor_team}}.png" alt="">
+                                            </div>
+                                            <div class="name">{{match.name_visitor_team}}</div>
+                                        </div>
+                                        <!-- <div class="col-sm-2 text-center">
+                                            
+                                            <div class="name">{{match.points}}</div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                      </div>
+                  </div>
+              </div>
+
+              <div role="tabpanel" class="tab-pane animated fadeIn" id="tab-3">
+                  <p>Here is your chance to predict how this summer's tournament will finish. Select first and second place in each group, the winners of each knockout round and your triumphant finalist - and then share your result with your friends.</p>
+                  <app-predictiongroups [serial]="serial">
+
+                  </app-predictiongroups>
+              </div>
+          </div>
+        </div><!--  .card-body -->
+      
+        
+
+        
+          
+      </div>
+    </div>
+  </div>
+</div>

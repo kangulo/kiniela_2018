@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <section class="prediction_groups">
+        <p *ngIf="serial==''">You have to select at least one prediction.</p>
+        <div *ngIf="serial">
+            <h3>Serial: <span class="serial_id">{{serial}}</span></h3>
+            <div class="row">
+                <div class="col-md-3" *ngFor="let group of groups">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="text-center">{{group.name}}</h2>
+                        </div>
+                        <div class="list-group">
+                            <div class="list-group-item" *ngFor="let team of teams | filter:group.name; let i = index;">
+                                <span class="flag">
+                                    <img src="../assets/img/flags-news/{{team.abbr}}.png" alt="">
+                                    <div class="lgi-text">{{team.name}}</div>
+                                </span>
+                                <div class="group_selector {{group.name | remove_space_between }} circle_radio" 
+                                attr.data-serial-id="{{serial}}" 
+                                attr.data-team-id="{{team.id}}" 
+                                attr.data-group-name="{{group.name | remove_space_between }}" 
+                                attr.data-group-id="{{group.group_id }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- ngIf -->
+  </section>
+</div>

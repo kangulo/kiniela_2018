@@ -1,0 +1,33 @@
+.tab-nav {
+    overflow: visible;
+}
+.nav-tabs>li>a:hover {
+    border-color:transparent;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.nav-tabs>li>a.active:after {
+    background:#2196F3;
+    transform: scale(1);
+}
+.nav-tabs>li>a:after {
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    -webkit-transition: all;
+    transition: all;
+    -webkit-transition-duration: 250ms;
+    transition-duration: 250ms;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.nav.tn-justified>li {
+    flex: 1;
+    text-align: center;
+}
+

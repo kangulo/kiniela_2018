@@ -1,0 +1,165 @@
+
+<!-- <app-countdown></app-countdown>  -->
+<div class="card">
+    <div class="card-header">
+        <h2>Dashboard
+            <small>Aqui podras observar como va el ranking de los jugadores.
+            </small>
+        </h2>
+    </div>
+    <div class="card-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs tab-nav tn-justified tn-icon" role="tablist">
+            <li role="presentation">
+                <a class="col-xs-4 active" href="#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab" aria-expanded="false">
+                    <i class="zmdi zmdi-accounts icon-tab"></i> Leaderboard
+                </a>
+            </li>
+            <li role="presentation">
+                <a class="col-sx-4" href="#tab-2" aria-controls="tab-2" role="tab" data-toggle="tab" aria-expanded="true">
+                    <i class="zmdi zmdi-receipt icon-tab"></i> Detalle
+                </a>
+            </li>
+            <li role="presentation">
+                <a class="col-sx-4" href="#tab-3" aria-controls="tab-3" role="tab" data-toggle="tab" aria-expanded="true">
+                    <i class="zmdi zmdi-assignment icon-tab"></i> Reglamento
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content p-20">
+            <div role="tabpanel" class="tab-pane animated fadeIn active" id="tab-1">
+                <div class="table-responsive">
+                    <table id="example" datatable class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nickname</th>
+                                <th>Points Matches</th>
+                                <th>Points Groups</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of leaderboard; let i = index" (click)="getPredictionDetails(row.serial_id,row.nickname)">
+                                <td>{{row.row_id}}</td>
+                                <td>{{row.nickname}}</td>
+                                <td>{{row.points_matches}}</td>
+                                <td>{{row.points_groups}}</td>
+                                <td>
+                                    <button class="ver-button btn btn-info waves-effect" >Ver &nbsp;<i class="zmdi zmdi-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <th>#</th>
+                            <th>Nickname</th>
+                            <th>Points Matches</th>
+                            <th>Points Groups</th>
+                            <th></th>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane animated fadeIn" id="tab-2">
+                <p *ngIf="serial==''">Haz click en el boton ver de la table de lideres para ver el detalle.
+                    </p>
+                <div *ngIf="serial!=''" class="card-body  card-padding-sm">
+                    <h3>Kiniela de <span class="text-danger">{{nickname | uppercase}}</span></h3>
+                    <div class="list-group lg-odd-black">
+                            
+                                <div id="print-section" class="list-group-item" href="" *ngFor="let match of predictionDetails">
+                                    <div class="matches-record">
+                                        <div class="col-sm-3">
+                                            <div>{{match.date | date:'dd MMM yyyy - H:mm' | uppercase}} Local time</div>
+                                            <div>{{match.id_group}}</div>  
+                                            <div>{{match.stadium_name}}, {{match.stadium_city}}</div>
+                                        </div>
+                                        <div class="col-sm-3 text-center">
+                                            <div class="flag">
+                                                <img src="../assets/img/flags-news/{{match.flag_local_team}}.png" alt="">
+                                            </div>
+                                            <div class="name">{{match.name_local_team}}</div>
+                                        </div>
+                                        <div class="col-sm-3 text-center">
+                                            <div class="score-wrapper finished">
+                                                <span class="gols_local_team">{{match.gols_local_team}} </span>
+                                                <span> - </span>
+                                                <span class="gols_visitor_team">{{match.gols_visitor_team}}</span>
+                                            </div>                                        
+                                        </div>
+                                        <div class="col-sm-3 text-center">
+                                            <div class="flag">
+                                                <img src="../assets/img/flags-news/{{match.flag_visitor_team}}.png" alt="">
+                                            </div>
+                                            <div class="name">{{match.name_visitor_team}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane animated fadeIn " id="tab-3">
+                <div class="reglamento">
+                    <ul>
+                        <li>Debes de ser mayor de 18+.</li>
+                        <li>Las reglas de este juego son simples: los concursantes deberán tratar de adivinar el puntaje final en cada partido, cuando estén en lo correcto obtendrán puntos por ello.</li>
+                        <li>El concursante con el puntaje más alto será el ganador.</li>
+                        <li>A medida que pasan los partidos, la aplicación actualizará los datos y mostrará los puntajes del concursante.</li>
+                        <li>Despues de cada partido los resultados seran mostrados en la tabla de posiciones</li>
+                        <li>Los pronósticos se cerraran el 14 de junio una hora antes del partido  para el comienzo del partido inaugural.</li>
+                            <li>Hay dos modos de obtener puntajes: </li>
+                            <ul>
+                                <li>Fase de Grupos:</li>
+                                <ul>
+                                    <li>Si aciertas el resultado exacto: 5 puntos.</li>
+                                    <li>Si solo aciertas el ganador mas no el resultado: 3 puntos</li>
+                                    <li>Si no aciertas ni el resultado exacto ni el ganador: 0 puntos</li>
+                                    <li>Ejemplos:</li>
+                                    <ul>
+                                        <li>Si el partido sale 5-3 y tu pusiste 2-1, acertaste solo el Ganador: 3 puntos</li>
+                                        <li>Si el partido sale 5-3 y tu pusiste 5-3, acertaste en el ganador, pero además acertaste en el resultado
+                                            exacto: serían 5 puntos</li>
+                                        <li>Si no acertaste ninguno de los casos anteriores tienes: 0 puntos!</li>
+                                    </ul>
+                                    <li>En el caso de los empates:</li>
+                                    <ul>
+                                        <li>Si el partido sale 5-5 y tu pusiste 2-2, acertaste solo el empate: 3 puntos</li>
+                                        <li>Si el partido sale 5-5 y tu pusiste 5-5, acertaste el empate, pero además acertaste el resultado
+                                            exacto: serían 5 puntos</li>
+                                        <li>Si no acertaste ninguno de los casos anteriores tienes: 0 puntos!</li>
+                                    </ul>
+                                </ul>
+                                <li>L&iacute;deres de Grupo:</li>
+                                <ul>
+                                    <li>5 Puntos en caso de acertar el Equipo y la posicion.</li>
+                                    <li>3 Punto en caso de acertar solo el equipo mas no la posicion.</li>
+                                    <li>Ejemplos:</li>
+                                    <ul>
+                                        <li>En el Grupo A los primeros de su grupo fueron: Equipo_X como primero de grupo y Equipo_Y de segundo</li>
+                                        <li>Si acertaste el equipo, pero además la posicion: serían 5 puntos</li>
+                                        <li>Si acertaste el equipo pero no la posicion tienes solamente 3 puntos</li>
+                                        <li>Si no acertaste ni el equipo ni la posicion tienes 0 puntos.</li>
+                                    </ul>
+                                </ul>
+                                
+                            </ul>
+                            <li>Esto no es una aplicacion de apuestas.</li>
+                            <li>Este es un proyecto personal realizado con fines didacticos y de esparcimiento.</li>
+                            <li>Los puntajes se calcularán por partido, una vez transcurridos los 15 mínutos como mínimo de finalizado el mismo.</li>
+                            <!-- <li>Los partidos se pueden pronosticar hasta una hora antes del comienzo de cada partido.</li>
+                            <li>Tus pronósticos los puedes modificar cuantas veces quieras, pero cumpliendo el punto anterior, es decir, que aún falte
+                                una hora como minimo para el comienzo del partido.</li> -->
+                            <li>No hay límite para la cantidad de kinielas o predicciones por jugador.</li>
+                            <li>Puedes agregar tantas kinielas o predicciones como desees, te registras y juegas sin costo.</li>
+                        </ul>
+                        <p>Si tienes alguna duda, reclamo o sugerencia contactame por <a href="mailto:kevinangulo@gmail.com">aqu&iacute;</a> </p>
+                        <a class="btn btn-danger waves-effect" [routerLink]="['/register']">Listo! Vamos a Jugar</a>
+                        
+                            
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

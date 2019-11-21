@@ -1,0 +1,24 @@
+.bgm-red{
+    background-color:#ad1115!important
+  }
+  .c-red{
+    color:#ad1115!important
+  }
+  .card-stadium-body img {
+    max-width: 100%;
+  }
+  .author-date{
+    color: #FFF;
+    font-size:15px
+  }
+  .title{
+    font-size:25px;
+    line-height:100%;
+    color:#fff
+  }
+  .card-stadium{
+      padding: 10px 30px;
+  }
+  .clear {
+      clear: both;
+  }

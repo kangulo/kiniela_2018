@@ -1,0 +1,143 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+            <h2>Admin Area
+                <small>Send Invitation, Activation, Register pagos</small>
+            </h2>
+        </div>
+        
+
+        <div class="card-body">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs tab-nav tn-justified tn-icon" role="tablist">
+                <li role="presentation">
+                    <a class="col-sx-4 active" href="#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab" aria-expanded="true">
+                        <i class="zmdi zmdi-home icon-tab"></i> Send Invitation
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a class="col-xs-4" href="#tab-2" aria-controls="tab-2" role="tab" data-toggle="tab" aria-expanded="false">
+                        <i class="zmdi zmdi-pin icon-tab"></i> Activate Prediction
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a class="col-xs-4" href="#tab-3" aria-controls="tab-3" role="tab" data-toggle="tab" aria-expanded="false">
+                        <i class="zmdi zmdi-star icon-tab"></i>
+                    </a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content p-20">
+                <div role="tabpanel" class="tab-pane animated fadeIn active" id="tab-1">
+
+                  <div *ngIf="!success; else sendInvitationForm" class="card-body  card-padding-sm">
+                    <div class="card">
+                        <div class="card-header ch-alt">
+                            <h2>Send Invitation Form
+                                <small>Please provide personal info of the person that you want to send invitation</small>
+                            </h2>
+                        </div>
+                        <form [formGroup]="registrationForm" (ngSubmit)="SendInvitation(registrationForm.value)">
+                            <div class="card-body card-padding">
+
+                                <div class="input-group fg-float m-b-30">
+                                    <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control input-lg" formControlName="name">
+                                        <label class="fg-label">Your Full Name</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-group fg-float m-b-30">
+                                    <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control input-lg" formControlName="nick_name">
+                                        <label class="fg-label">Your Nick Name</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-group fg-float m-b-30">
+                                    <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                                    <div class="fg-line">
+                                        <input type="email" class="form-control input-lg" formControlName="email">
+                                        <label class="fg-label">Email address</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-group fg-float m-b-30">
+                                    <span class="input-group-addon"><i class="zmdi zmdi-local-phone"></i></span>
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control input-lg" formControlName="phone">
+                                        <label class="fg-label">Contact Number</label>
+                                    </div>
+                                </div>
+
+                                <div class="input-group fg-float m-b-30">
+                                    <span class="input-group-addon"><i class="zmdi zmdi-plus-circle"></i></span>
+                                    <div class="fg-line">
+                                        <input class="form-control input-lg" placeholder="Quantity" OnlyNumber="true" formControlName="quantity"  class="qty_kiniela">
+                                    </div>
+                                </div>
+        
+                                <input type="submit" class="btn btn-info waves-effect" value="Submit" [disabled]="!registrationForm.valid"/>
+                                <input type="hidden" class="btn btn-info waves-effect" formControlName="form"/>
+                                <!-- <a href="https://www.paypal.me/kevinwebdev/5" class="btn btn-link waves-effect">Let's do it</a> -->
+                                <!-- <button class="btn btn-link waves-effect" (click)="ShowAlert();">Cancel</button> -->
+                            </div>
+                        </form>    
+                    </div>
+                  </div>
+                  <ng-template #sendInvitationForm>
+                      <h1>{{name}}</h1>
+                      <p>Email: {{email}}</p>
+                      <p>Phone: {{phone}}</p>
+                      <p>Qty: {{quantity}}</p>
+                  </ng-template>
+                </div>
+                
+                <div role="tabpanel" class="tab-pane animated fadeIn" id="tab-2">
+                    <div class="card-body  card-padding-sm">
+                        <div class="card">
+                            <div class="card-header ch-alt">
+                                <h2>Activation Form
+                                    <small>Please fill it out the following formm to activate your game</small>
+                                </h2>
+                            </div>
+                            <form [formGroup]="activateForm" (ngSubmit)="ActivatePredictionByForm(activateForm.value)">
+                                <div class="card-body card-padding">
+                                    <div class="input-group fg-float m-b-30">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+                                        <div class="fg-line">
+                                            <input type="email" class="form-control input-lg" formControlName="email">
+                                            <label class="fg-label">Email address</label>
+                                        </div>
+                                    </div>
+            
+                                    <div class="input-group fg-float m-b-30">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-confirmation-number"></i></span>
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control input-lg" minlength="8" maxlength="8" formControlName="serial">
+                                            <label class="fg-label">Serial Number</label>
+                                        </div>
+                                    </div>
+            
+                                    <input type="submit" class="btn btn-info waves-effect" value="Submit" [disabled]="!activateForm.valid"/>
+                                    <input type="hidden" class="btn btn-info waves-effect" formControlName="form"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane animated fadeIn" id="tab-3">
+                    Serhoncus quis est sit amete in nisl molestie fringilla. Nunc vitae ante id
+                    magna feugiat condimentum. Maecenas sit amet urna massa.
+                </div>
+            </div>
+        </div><!--  .card-body -->
+      </div><!-- .card -->
+    </div><!-- .col -->
+  </div><!-- .row -->
+</div><!-- .container -->

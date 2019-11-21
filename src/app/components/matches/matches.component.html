@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-stadium bgm-red">
+                <div class="matches-title">Matches</div>
+            </div>
+  
+            <div class="card-body card-stadium-body card-padding-sm">
+                <h3>Thursday, Jun 14</h3>
+                <div class="list-group">
+                    <div class="list-group-item media" href="" *ngFor="let match of matches; let i = index">
+                        <div class="media-body matches-record">
+                            <div class="col-sm-4">
+                              <div>{{match.date | date:'dd MMM yyyy - H:mm' | uppercase}} Local time</div>
+                              <div>{{match.id_group}}</div>  
+                              <div>{{match.stadium_name}}, {{match.stadium_city}} {{matches.length}}</div>
+                              <div class="progress progress-stacked">
+                                <span [style.width.%]="(match.local_win > 0 ) ? match.local_win * 100 / totalPlayers : 0" class="bg-red">{{(match.local_win > 0 ) ? (match.local_win * 100 / totalPlayers | number:'2.1-2') : 0}}</span>
+                                <span [style.width.%]="(match.tied > 0 ) ? match.tied * 100 / totalPlayers : 0" class="bg-yellow">{{(match.tied > 0 ) ? (match.tied * 100 / totalPlayers | number:'2.1-2') : 0}}</span>
+                                <span [style.width.%]="(match.visitor_win > 0 ) ? match.visitor_win * 100 / totalPlayers : 0" class="bg-blue">{{(match.visitor_win > 0 ) ? (match.visitor_win * 100 / totalPlayers | number:'2.1-2') : 0}}</span>
+                              </div>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                              <div class="flag">
+                                  <img src="../assets/img/flags-news/{{match.flag_local_team}}.png" alt="">
+                              </div>
+                              <div class="name">{{match.name_local_team}}</div>
+                            </div>
+                            <div class="col-sm-1 text-center">
+                                    <div class="score-wrapper">
+                                            <span class="score">{{match.gols_local_team}}</span>
+                                    </div>
+                            </div>
+                             <div class="col-sm-2 text-center">
+                              <div class="match">Match {{i+1}}</div>
+                              <div class="matcth-time">{{match.date | date:'H:mm' }}</div>
+                              <div class="match-group">{{match.id_group}}</div>
+                            </div> 
+                            <div class="col-sm-1 text-center">
+                                    <div class="score-wrapper">
+                                            <span class="score">{{match.gols_visitor_team}}</span>
+                                    </div>
+                            </div>
+                            <div class="col-sm-2 text-center">
+                              <div class="flag">
+                                  <img src="../assets/img/flags-news/{{match.flag_visitor_team}}.png" alt="">
+                              </div>
+                              <div class="name">{{match.name_visitor_team}}</div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

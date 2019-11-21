@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "name": "Italia",
+    "group": "A"
+  },{
+    "id": 2,
+    "name": "Francia",
+    "group": "B"
+  },{
+    "id": 3,
+    "name": "Alemania",
+    "group": "C"
+  },{
+    "id": 4,
+    "name": "Brazil",
+    "group": "D"
+  },{
+    "id": 5,
+    "name": "Mexico",
+    "group": "H"
+  },{
+    "id": 6,
+    "name": "Argentina",
+    "group": "E"
+  },{
+    "id": 7,
+    "name": "Portugal",
+    "group": "F"
+  },{
+    "id": 8,
+    "name": "Russia",
+    "group": "G"
+  }
+]
