@@ -1,0 +1,26 @@
+{
+  "name": "Kiniela - Rusia 2018",
+  "short_name": "Kiniela",
+  "description": "A prediction game", 
+  "start_url": "index.html", 
+  "icons": [{
+    "src": "assets/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }, {
+      "src": "assets/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    }, {
+      "src": "assets/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }, {
+      "src": "assets/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }],
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ad1115"
+}
